@@ -2,44 +2,44 @@ import { c as _c } from "react/compiler-runtime";
 import { feature } from 'bun:bundle';
 import figures from 'figures';
 import React, { type ReactNode, useEffect, useEffectEvent, useMemo, useRef, useState } from 'react';
-import { isCoordinatorMode } from 'src/coordinator/coordinatorMode.js';
-import { useTerminalSize } from 'src/hooks/useTerminalSize.js';
-import { useAppState, useSetAppState } from 'src/state/AppState.js';
-import { enterTeammateView, exitTeammateView } from 'src/state/teammateViewHelpers.js';
-import type { ToolUseContext } from 'src/Tool.js';
-import { DreamTask, type DreamTaskState } from 'src/tasks/DreamTask/DreamTask.js';
-import { InProcessTeammateTask } from 'src/tasks/InProcessTeammateTask/InProcessTeammateTask.js';
-import type { InProcessTeammateTaskState } from 'src/tasks/InProcessTeammateTask/types.js';
-import type { LocalAgentTaskState } from 'src/tasks/LocalAgentTask/LocalAgentTask.js';
-import { LocalAgentTask } from 'src/tasks/LocalAgentTask/LocalAgentTask.js';
-import type { LocalShellTaskState } from 'src/tasks/LocalShellTask/guards.js';
-import { LocalShellTask } from 'src/tasks/LocalShellTask/LocalShellTask.js';
+import { isCoordinatorMode } from '/coordinator/coordinatorMode';
+import { useTerminalSize } from '/hooks/useTerminalSize';
+import { useAppState, useSetAppState } from '/state/AppState';
+import { enterTeammateView, exitTeammateView } from '/state/teammateViewHelpers';
+import type { ToolUseContext } from '/Tool';
+import { DreamTask, type DreamTaskState } from '/tasks/DreamTask/DreamTask';
+import { InProcessTeammateTask } from '/tasks/InProcessTeammateTask/InProcessTeammateTask';
+import type { InProcessTeammateTaskState } from '/tasks/InProcessTeammateTask/types';
+import type { LocalAgentTaskState } from '/tasks/LocalAgentTask/LocalAgentTask';
+import { LocalAgentTask } from '/tasks/LocalAgentTask/LocalAgentTask';
+import type { LocalShellTaskState } from '/tasks/LocalShellTask/guards';
+import { LocalShellTask } from '/tasks/LocalShellTask/LocalShellTask';
 // Type import is erased at build time — safe even though module is ant-gated.
-import type { LocalWorkflowTaskState } from 'src/tasks/LocalWorkflowTask/LocalWorkflowTask.js';
-import type { MonitorMcpTaskState } from 'src/tasks/MonitorMcpTask/MonitorMcpTask.js';
-import { RemoteAgentTask, type RemoteAgentTaskState } from 'src/tasks/RemoteAgentTask/RemoteAgentTask.js';
-import { type BackgroundTaskState, isBackgroundTask, type TaskState } from 'src/tasks/types.js';
-import type { DeepImmutable } from 'src/types/utils.js';
-import { intersperse } from 'src/utils/array.js';
-import { TEAM_LEAD_NAME } from 'src/utils/swarm/constants.js';
-import { stopUltraplan } from '../../commands/ultraplan.js';
-import type { CommandResultDisplay } from '../../commands.js';
-import { useRegisterOverlay } from '../../context/overlayContext.js';
-import type { ExitState } from '../../hooks/useExitOnCtrlCDWithKeybindings.js';
-import type { KeyboardEvent } from '../../ink/events/keyboard-event.js';
-import { Box, Text } from '../../ink.js';
-import { useKeybindings } from '../../keybindings/useKeybinding.js';
-import { useShortcutDisplay } from '../../keybindings/useShortcutDisplay.js';
-import { count } from '../../utils/array.js';
-import { Byline } from '../design-system/Byline.js';
-import { Dialog } from '../design-system/Dialog.js';
-import { KeyboardShortcutHint } from '../design-system/KeyboardShortcutHint.js';
-import { AsyncAgentDetailDialog } from './AsyncAgentDetailDialog.js';
-import { BackgroundTask as BackgroundTaskComponent } from './BackgroundTask.js';
-import { DreamDetailDialog } from './DreamDetailDialog.js';
-import { InProcessTeammateDetailDialog } from './InProcessTeammateDetailDialog.js';
-import { RemoteSessionDetailDialog } from './RemoteSessionDetailDialog.js';
-import { ShellDetailDialog } from './ShellDetailDialog.js';
+import type { LocalWorkflowTaskState } from '/tasks/LocalWorkflowTask/LocalWorkflowTask';
+import type { MonitorMcpTaskState } from '/tasks/MonitorMcpTask/MonitorMcpTask';
+import { RemoteAgentTask, type RemoteAgentTaskState } from '/tasks/RemoteAgentTask/RemoteAgentTask';
+import { type BackgroundTaskState, isBackgroundTask, type TaskState } from '/tasks/types';
+import type { DeepImmutable } from '/types/utils';
+import { intersperse } from '/utils/array';
+import { TEAM_LEAD_NAME } from '/utils/swarm/constants';
+import { stopUltraplan } from '../../commands/ultraplan';
+import type { CommandResultDisplay } from '../../commands';
+import { useRegisterOverlay } from '../../context/overlayContext';
+import type { ExitState } from '../../hooks/useExitOnCtrlCDWithKeybindings';
+import type { KeyboardEvent } from '../../ink/events/keyboard-event';
+import { Box, Text } from '../../ink';
+import { useKeybindings } from '../../keybindings/useKeybinding';
+import { useShortcutDisplay } from '../../keybindings/useShortcutDisplay';
+import { count } from '../../utils/array';
+import { Byline } from '../design-system/Byline';
+import { Dialog } from '../design-system/Dialog';
+import { KeyboardShortcutHint } from '../design-system/KeyboardShortcutHint';
+import { AsyncAgentDetailDialog } from './AsyncAgentDetailDialog';
+import { BackgroundTask as BackgroundTaskComponent } from './BackgroundTask';
+import { DreamDetailDialog } from './DreamDetailDialog';
+import { InProcessTeammateDetailDialog } from './InProcessTeammateDetailDialog';
+import { RemoteSessionDetailDialog } from './RemoteSessionDetailDialog';
+import { ShellDetailDialog } from './ShellDetailDialog';
 type ViewState = {
   mode: 'list';
 } | {
@@ -106,17 +106,17 @@ type ListItem = {
 // ~1.3K lines into external builds. Gate with feature() + require so the
 // bundler can dead-code-eliminate the branch.
 /* eslint-disable @typescript-eslint/no-require-imports */
-const WorkflowDetailDialog = feature('WORKFLOW_SCRIPTS') ? (require('./WorkflowDetailDialog.js') as typeof import('./WorkflowDetailDialog.js')).WorkflowDetailDialog : null;
-const workflowTaskModule = feature('WORKFLOW_SCRIPTS') ? require('src/tasks/LocalWorkflowTask/LocalWorkflowTask.js') as typeof import('src/tasks/LocalWorkflowTask/LocalWorkflowTask.js') : null;
+const WorkflowDetailDialog = feature('WORKFLOW_SCRIPTS') ? (require('./WorkflowDetailDialog') as typeof import('./WorkflowDetailDialog')).WorkflowDetailDialog : null;
+const workflowTaskModule = feature('WORKFLOW_SCRIPTS') ? require('/tasks/LocalWorkflowTask/LocalWorkflowTask') as typeof import('/tasks/LocalWorkflowTask/LocalWorkflowTask') : null;
 const killWorkflowTask = workflowTaskModule?.killWorkflowTask ?? null;
 const skipWorkflowAgent = workflowTaskModule?.skipWorkflowAgent ?? null;
 const retryWorkflowAgent = workflowTaskModule?.retryWorkflowAgent ?? null;
 // Relative path, not `src/...` path-mapping — Bun's DCE can statically
 // resolve + eliminate `./` requires, but path-mapped strings stay opaque
 // and survive as dead literals in the bundle. Matches tasks.ts pattern.
-const monitorMcpModule = feature('MONITOR_TOOL') ? require('../../tasks/MonitorMcpTask/MonitorMcpTask.js') as typeof import('../../tasks/MonitorMcpTask/MonitorMcpTask.js') : null;
+const monitorMcpModule = feature('MONITOR_TOOL') ? require('../../tasks/MonitorMcpTask/MonitorMcpTask') as typeof import('../../tasks/MonitorMcpTask/MonitorMcpTask') : null;
 const killMonitorMcp = monitorMcpModule?.killMonitorMcp ?? null;
-const MonitorMcpDetailDialog = feature('MONITOR_TOOL') ? (require('./MonitorMcpDetailDialog.js') as typeof import('./MonitorMcpDetailDialog.js')).MonitorMcpDetailDialog : null;
+const MonitorMcpDetailDialog = feature('MONITOR_TOOL') ? (require('./MonitorMcpDetailDialog') as typeof import('./MonitorMcpDetailDialog')).MonitorMcpDetailDialog : null;
 /* eslint-enable @typescript-eslint/no-require-imports */
 
 // Helper to get filtered background tasks (excludes foregrounded local_agent)

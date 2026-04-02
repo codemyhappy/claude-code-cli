@@ -1,13 +1,13 @@
 import { c as _c } from "react/compiler-runtime";
 import * as React from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useNotifications } from 'src/context/notifications.js';
-import { Text } from 'src/ink.js';
-import { getRateLimitWarning, getUsingOverageText } from 'src/services/claudeAiLimits.js';
-import { useClaudeAiLimits } from 'src/services/claudeAiLimitsHook.js';
-import { getSubscriptionType } from 'src/utils/auth.js';
-import { hasClaudeAiBillingAccess } from 'src/utils/billing.js';
-import { getIsRemoteMode } from '../../bootstrap/state.js';
+import { useNotifications } from '/context/notifications';
+import { Text } from '/ink';
+import { getRateLimitWarning, getUsingOverageText } from '/services/claudeAiLimits';
+import { useClaudeAiLimits } from '/services/claudeAiLimitsHook';
+import { getSubscriptionType } from '/utils/auth';
+import { hasClaudeAiBillingAccess } from '/utils/billing';
+import { getIsRemoteMode } from '../../bootstrap/state';
 export function useRateLimitWarningNotification(model) {
   const $ = _c(17);
   const {

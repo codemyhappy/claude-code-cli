@@ -24,13 +24,13 @@ const EXCLUDED_FILENAMES = new Set([
 // File extension patterns (case-insensitive)
 const EXCLUDED_EXTENSIONS = new Set([
   '.lock',
-  '.min.js',
+  '.min',
   '.min.css',
   '.min.html',
-  '.bundle.js',
+  '.bundle',
   '.bundle.css',
   '.generated.ts',
-  '.generated.js',
+  '.generated',
   '.d.ts', // TypeScript declaration files
 ])
 

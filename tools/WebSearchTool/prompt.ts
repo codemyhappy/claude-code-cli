@@ -1,4 +1,4 @@
-import { getLocalMonthYear } from 'src/constants/common.js'
+import { getLocalMonthYear } from '/constants/common'
 
 export const WEB_SEARCH_TOOL_NAME = 'WebSearch'
 

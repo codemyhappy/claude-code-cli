@@ -1,5 +1,5 @@
-import type { HistoryMode } from 'src/hooks/useArrowKeyHistory.js'
-import type { PromptInputMode } from 'src/types/textInputTypes.js'
+import type { HistoryMode } from '/hooks/useArrowKeyHistory'
+import type { PromptInputMode } from '/types/textInputTypes'
 
 export function prependModeCharacterToInput(
   input: string,

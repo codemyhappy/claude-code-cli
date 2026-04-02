@@ -119,7 +119,7 @@ const MCP_SERVER_PATTERNS: Array<{
  * @returns The code indexing tool identifier, or undefined if not a code indexing command
  *
  * @example
- * detectCodeIndexingFromCommand('src search "pattern"') // returns 'sourcegraph'
+ * detectCodeIndexingFromCommand(' search "pattern"') // returns 'sourcegraph'
  * detectCodeIndexingFromCommand('cody chat --message "help"') // returns 'cody'
  * detectCodeIndexingFromCommand('ls -la') // returns undefined
  */

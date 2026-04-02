@@ -3,18 +3,18 @@ import type { TextBlockParam } from '@anthropic-ai/sdk/resources/index.mjs'
 import { createPatch } from 'diff'
 import { mkdir, writeFile } from 'fs/promises'
 import { join } from 'path'
-import type { AgentId } from 'src/types/ids.js'
-import type { Message } from 'src/types/message.js'
-import { logForDebugging } from 'src/utils/debug.js'
-import { djb2Hash } from 'src/utils/hash.js'
-import { logError } from 'src/utils/log.js'
-import { getClaudeTempDir } from 'src/utils/permissions/filesystem.js'
-import { jsonStringify } from 'src/utils/slowOperations.js'
-import type { QuerySource } from '../../constants/querySource.js'
+import type { AgentId } from '/types/ids'
+import type { Message } from '/types/message'
+import { logForDebugging } from '/utils/debug'
+import { djb2Hash } from '/utils/hash'
+import { logError } from '/utils/log'
+import { getClaudeTempDir } from '/utils/permissions/filesystem'
+import { jsonStringify } from '/utils/slowOperations'
+import type { QuerySource } from '../../constants/querySource'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
-} from '../analytics/index.js'
+} from '../analytics/index'
 
 function getCacheBreakDiffPath(): string {
   const chars = 'abcdefghijklmnopqrstuvwxyz0123456789'

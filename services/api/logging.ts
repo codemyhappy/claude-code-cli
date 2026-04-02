@@ -12,32 +12,32 @@ import {
   getTeleportedSessionInfo,
   markFirstTeleportMessageLogged,
   setLastApiCompletionTimestamp,
-} from 'src/bootstrap/state.js'
-import type { QueryChainTracking } from 'src/Tool.js'
-import { isConnectorTextBlock } from 'src/types/connectorText.js'
-import type { AssistantMessage } from 'src/types/message.js'
-import { logForDebugging } from 'src/utils/debug.js'
-import type { EffortLevel } from 'src/utils/effort.js'
-import { logError } from 'src/utils/log.js'
-import { getAPIProviderForStatsig } from 'src/utils/model/providers.js'
-import type { PermissionMode } from 'src/utils/permissions/PermissionMode.js'
-import { jsonStringify } from 'src/utils/slowOperations.js'
-import { logOTelEvent } from 'src/utils/telemetry/events.js'
+} from '/bootstrap/state'
+import type { QueryChainTracking } from '/Tool'
+import { isConnectorTextBlock } from '/types/connectorText'
+import type { AssistantMessage } from '/types/message'
+import { logForDebugging } from '/utils/debug'
+import type { EffortLevel } from '/utils/effort'
+import { logError } from '/utils/log'
+import { getAPIProviderForStatsig } from '/utils/model/providers'
+import type { PermissionMode } from '/utils/permissions/PermissionMode'
+import { jsonStringify } from '/utils/slowOperations'
+import { logOTelEvent } from '/utils/telemetry/events'
 import {
   endLLMRequestSpan,
   isBetaTracingEnabled,
   type Span,
-} from 'src/utils/telemetry/sessionTracing.js'
-import type { NonNullableUsage } from '../../entrypoints/sdk/sdkUtilityTypes.js'
-import { consumeInvokingRequestId } from '../../utils/agentContext.js'
+} from '/utils/telemetry/sessionTracing'
+import type { NonNullableUsage } from '../../entrypoints/sdk/sdkUtilityTypes'
+import { consumeInvokingRequestId } from '../../utils/agentContext'
 import {
   type AnalyticsMetadata_I_VERIFIED_THIS_IS_NOT_CODE_OR_FILEPATHS,
   logEvent,
-} from '../analytics/index.js'
-import { sanitizeToolNameForAnalytics } from '../analytics/metadata.js'
-import { EMPTY_USAGE } from './emptyUsage.js'
-import { classifyAPIError } from './errors.js'
-import { extractConnectionErrorDetails } from './errorUtils.js'
+} from '../analytics/index'
+import { sanitizeToolNameForAnalytics } from '../analytics/metadata'
+import { EMPTY_USAGE } from './emptyUsage'
+import { classifyAPIError } from './errors'
+import { extractConnectionErrorDetails } from './errorUtils'
 
 export type { NonNullableUsage }
 export { EMPTY_USAGE }
